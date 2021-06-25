@@ -5,7 +5,6 @@ import { toast } from "react-toastify";
 import { API_URL } from "../../config";
 
 const InputForm = ({ hostUrl }) => {
-  console.log(API_URL);
   const [url, setUrl] = useState("");
   const [generatedUrl, setGeneratedUrl] = useState("");
 
@@ -26,7 +25,7 @@ const InputForm = ({ hostUrl }) => {
     }
 
     try {
-      const res = await axios.post(`${process.env.API_URL}/api/generateurl/`, {
+      const res = await axios.post(`${API_URL}/api/generateurl/`, {
         original_url: url,
       });
       console.log(res.data);
