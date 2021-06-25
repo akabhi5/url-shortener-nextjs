@@ -3,10 +3,12 @@ import React, { useState } from "react";
 import GeneratedUrl from "../GeneratedUrl";
 import { toast } from "react-toastify";
 import { API_URL } from "../../config";
+import Spinner from "../Spinner";
 
 const InputForm = ({ hostUrl }) => {
   const [url, setUrl] = useState("");
   const [generatedUrl, setGeneratedUrl] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const onSubmitForm = async (e) => {
     e.preventDefault();
@@ -25,10 +27,11 @@ const InputForm = ({ hostUrl }) => {
     }
 
     try {
+      setGeneratedUrl("");
+      setLoading(true);
       const res = await axios.post(`${API_URL}/api/generateurl/`, {
         original_url: url,
       });
-      // console.log(res.data);
       setGeneratedUrl(`${hostUrl}/${res.data.shorten_url}`);
       toast("Short URL generated", {
         position: "top-right",
@@ -39,7 +42,9 @@ const InputForm = ({ hostUrl }) => {
         draggable: true,
         progress: undefined,
       });
+      setLoading(false);
     } catch (error) {
+      setLoading(false);
       toast.error("Some error occurred. Please try again.", {
         position: "top-right",
         autoClose: 5000,
@@ -82,6 +87,7 @@ const InputForm = ({ hostUrl }) => {
             </div>
           </form>
         </div>
+        {loading ? <Spinner /> : null}
         {generatedUrl ? <GeneratedUrl generatedUrl={generatedUrl} /> : null}
       </div>
     </div>
