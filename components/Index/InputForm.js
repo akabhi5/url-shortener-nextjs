@@ -28,7 +28,7 @@ const InputForm = ({ hostUrl }) => {
       const res = await axios.post(`${API_URL}/api/generateurl/`, {
         original_url: url,
       });
-      console.log(res.data);
+      // console.log(res.data);
       setGeneratedUrl(`${hostUrl}/${res.data.shorten_url}`);
       toast("Short URL generated", {
         position: "top-right",
