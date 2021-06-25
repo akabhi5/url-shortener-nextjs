@@ -3,11 +3,11 @@ import Link from "next/link";
 
 const Header = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-primary shadow-lg py-4">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
+        <h2>
           <Link href="/">Shorten URL</Link>
-        </a>
+        </h2>
         <div id="navbarSupportedContent">
           <ul
             style={{
@@ -21,17 +21,17 @@ const Header = () => {
               style={{ display: "inline", float: "left" }}
               className="nav-item"
             >
-              <a className="nav-link active" aria-current="page" href="#">
+              <h4 className="mx-3">
                 <Link href="login">Login</Link>
-              </a>
+              </h4>
             </li>
             <li
               style={{ display: "inline", float: "left" }}
               className="nav-item"
             >
-              <a className="nav-link" href="#">
+              <h4 className="mx-3">
                 <Link href="/signup">Signup</Link>
-              </a>
+              </h4>
             </li>
           </ul>
         </div>
