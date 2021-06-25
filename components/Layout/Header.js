@@ -11,7 +11,7 @@ const Header = () => {
         <div id="navbarSupportedContent">
           <ul
             style={{
-              "list-style-type": "none",
+              listStyleType: "none",
               margin: "0",
               padding: "0",
             }}

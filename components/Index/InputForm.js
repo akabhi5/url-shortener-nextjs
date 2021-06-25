@@ -2,8 +2,10 @@ import axios from "axios";
 import React, { useState } from "react";
 import GeneratedUrl from "../GeneratedUrl";
 import { toast } from "react-toastify";
+import { API_URL } from "../../config";
 
 const InputForm = ({ hostUrl }) => {
+  console.log(API_URL);
   const [url, setUrl] = useState("");
   const [generatedUrl, setGeneratedUrl] = useState("");
 
@@ -24,9 +26,10 @@ const InputForm = ({ hostUrl }) => {
     }
 
     try {
-      const res = await axios.post(`http://localhost:8000/api/generateurl/`, {
+      const res = await axios.post(`${process.env.API_URL}/api/generateurl/`, {
         original_url: url,
       });
+      console.log(res.data);
       setGeneratedUrl(`${hostUrl}/${res.data.shorten_url}`);
       toast("Short URL generated", {
         position: "top-right",

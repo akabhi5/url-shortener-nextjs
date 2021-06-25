@@ -16,9 +16,7 @@ export default ShortenUrl;
 
 export async function getServerSideProps(context) {
   const { params } = context;
-  const resp = await axios.get(
-    `http://localhost:8000/api/geturl/${params.url}`
-  );
+  const resp = await axios.get(`${API_URL}/api/geturl/${params.url}/`);
   return {
     redirect: {
       permanent: false,
