@@ -69,7 +69,7 @@ const InputForm = ({ hostUrl }) => {
               <input
                 style={{ height: "60px", fontSize: "30px" }}
                 type="text"
-                className="form-control"
+                className="form-control border-4"
                 id="inputUrl"
                 placeholder="Enter URL"
                 value={url}
