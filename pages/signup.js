@@ -76,7 +76,6 @@ const SignUp = () => {
         }));
       }
     } catch (error) {
-      // console.log(error.response.data.email);
       let passwordError = error.response.data.password[0];
       passwordError = passwordError
         .slice(2, passwordError.length - 2)
