@@ -1,8 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import Layout from "../components/Layout/Layout";
 import Link from "next/link";
+import axios from "axios";
+import { useRouter } from "next/router";
 
 const Login = () => {
+  const router = useRouter();
+
+  const [userData, setUserData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const { email, password } = userData;
+
+  const handleChange = (event) => {
+    setUserData({ ...userData, [event.target.name]: event.target.value });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const res = await axios.post("/api/login", userData);
+      router.push("/");
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
+
   return (
     <Layout>
       <main className="container">
@@ -10,7 +35,7 @@ const Login = () => {
           <div className="card mt-5 shadow-sm">
             <div className="m-4">
               <h1 className="text-center">Login</h1>
-              <form>
+              <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                   <label htmlFor="exampleInputEmail1" className="form-label">
                     Email address
@@ -20,6 +45,9 @@ const Login = () => {
                     className="form-control"
                     id="exampleInputEmail1"
                     aria-describedby="emailHelp"
+                    name="email"
+                    value={email}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="mb-3">
@@ -30,6 +58,9 @@ const Login = () => {
                     type="password"
                     className="form-control"
                     id="exampleInputPassword1"
+                    name="password"
+                    value={password}
+                    onChange={handleChange}
                   />
                 </div>
 

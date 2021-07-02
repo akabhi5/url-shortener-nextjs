@@ -32,6 +32,7 @@ const SignUp = () => {
       }));
       return true;
     } else {
+      setSuccess(false);
       setErrors((prevState) => ({
         ...prevState,
         password: [],
@@ -90,7 +91,7 @@ const SignUp = () => {
 
   return (
     <Layout>
-      <main className="container">
+      <main className="mb-5 container">
         <div className="col-md-6 offset-md-3">
           <div className="card mt-5 shadow-sm">
             <div className="m-4">

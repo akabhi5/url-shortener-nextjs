@@ -1,11 +1,11 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import GeneratedUrl from "../GeneratedUrl";
 import { toast } from "react-toastify";
 import { API_URL } from "../../config";
 import Spinner from "../Spinner";
 
-const InputForm = ({ hostUrl }) => {
+const InputForm = ({ hostUrl, token, seturlsOfUser }) => {
   const [url, setUrl] = useState("");
   const [generatedUrl, setGeneratedUrl] = useState("");
   const [loading, setLoading] = useState(false);
@@ -29,10 +29,27 @@ const InputForm = ({ hostUrl }) => {
     try {
       setGeneratedUrl("");
       setLoading(true);
-      const res = await axios.post(`${API_URL}/api/generateurl/`, {
-        original_url: url,
-      });
+      let res;
+      if (token) {
+        res = await axios.post(
+          `${API_URL}/api/generateurl/`,
+          {
+            original_url: url,
+          },
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+      } else {
+        res = await axios.post(`${API_URL}/api/generateurl/`, {
+          original_url: url,
+        });
+      }
+
+      const { shorten_url, id } = res.data;
       setGeneratedUrl(`${hostUrl}/${res.data.shorten_url}`);
+      seturlsOfUser((prevState) => [...prevState, { shorten_url, id }]);
+
       toast("Short URL generated", {
         position: "top-right",
         autoClose: 5000,
