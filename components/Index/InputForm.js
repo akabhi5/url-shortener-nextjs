@@ -61,8 +61,8 @@ const InputForm = ({ hostUrl }) => {
     <div className="container">
       <div>
         <div style={{ width: "90%" }} className="mx-auto">
-          <form onSubmit={onSubmitForm} className="row">
-            <div className="col-8">
+          <form onSubmit={onSubmitForm}>
+            <div>
               <label htmlFor="inputUrl" className="visually-hidden">
                 Password
               </label>
@@ -76,12 +76,12 @@ const InputForm = ({ hostUrl }) => {
                 onChange={(e) => setUrl(e.target.value)}
               />
             </div>
-            <div className="col-4">
-              <div className="d-grid gap-2">
+            <div>
+              <div className="text-center gap-2">
                 <button
                   style={{ height: "60px" }}
                   type="submit"
-                  className="btn btn-primary mb-3"
+                  className="btn btn-primary my-3"
                 >
                   Shorten URL
                 </button>

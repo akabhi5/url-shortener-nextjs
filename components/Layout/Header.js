@@ -33,16 +33,12 @@ const Header = () => {
             <>
               <li>
                 <Link href="/login">
-                  <a className="btn-icon">
-                    <FaSignInAlt /> Login
-                  </a>
+                  <a className="btn-icon">Login</a>
                 </Link>
               </li>
               <li>
                 <Link href="/signup">
-                  <a className="btn-icon">
-                    <FaSignInAlt /> Signup
-                  </a>
+                  <a className="btn-icon">Signup</a>
                 </Link>
               </li>
             </>
